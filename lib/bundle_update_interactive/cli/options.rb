@@ -93,12 +93,13 @@ module BundleUpdateInteractive
     end
 
     attr_accessor :exclusively
-    attr_writer :commit, :latest
+    attr_writer :commit, :latest, :fzf
 
     def initialize
       @exclusively = []
       @commit = false
       @latest = false
+      @fzf = true
     end
 
     def commit?
@@ -107,6 +108,10 @@ module BundleUpdateInteractive
 
     def latest?
       @latest
+    end
+
+    def fzf?
+      @fzf
     end
   end
 end
