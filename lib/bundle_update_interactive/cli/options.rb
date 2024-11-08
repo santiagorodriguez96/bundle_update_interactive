@@ -51,6 +51,9 @@ module BundleUpdateInteractive
             Allow the latest gem versions, ignoring Gemfile pins. May modify the Gemfile.
             #{pastel.green('bundle update-interactive')} #{pastel.yellow('--latest')}
 
+            Uses fzf as for selecting the gems.
+            #{pastel.green('bundle update-interactive')} #{pastel.yellow('--fzf')}
+
         HELP
       end
 
@@ -79,6 +82,9 @@ module BundleUpdateInteractive
           parser.on("-D", "Shorthand for --exclusively=development,test") do
             options.exclusively = %i[development test]
           end
+          parser.on("--fzf", "Uses fzf for selecting the gems") do
+            options.fzf = true
+          end
           parser.on("-v", "--version", "Display version") do
             require "bundler"
             puts "bundle_update_interactive/#{VERSION} bundler/#{Bundler::VERSION} #{RUBY_DESCRIPTION}"
@@ -99,7 +105,7 @@ module BundleUpdateInteractive
       @exclusively = []
       @commit = false
       @latest = false
-      @fzf = true
+      @fzf = false
     end
 
     def commit?
