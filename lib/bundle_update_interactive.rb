@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "pastel"
+require "bundler/plugin/api"
 
 require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem
@@ -14,4 +15,12 @@ module BundleUpdateInteractive
   end
 
   self.pastel = Pastel.new
+
+  Bundler::Plugin::API.command('update-interactive', self)
+  Bundler::Plugin::API.command('ui', self)
+  Bundler::Plugin::API.command('lorem_ipsum', self)
+
+  def exec(command, args)
+    CLI.new.run(argv: args)
+  end
 end
