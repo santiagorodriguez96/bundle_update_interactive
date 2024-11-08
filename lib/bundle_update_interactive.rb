@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "pastel"
+require 'bundle_update_interactive/bundler_plugin'
 
 require "zeitwerk"
 loader = Zeitwerk::Loader.for_gem
