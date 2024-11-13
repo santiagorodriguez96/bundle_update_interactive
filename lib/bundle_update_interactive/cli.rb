@@ -8,11 +8,17 @@ module BundleUpdateInteractive
       options = Options.parse(argv)
       report, updater = generate_report(options)
 
-      puts_legend_and_withheld_gems(report) unless report.empty?
-      puts("No gems to update.").then { return } if report.updatable_gems.empty?
+      if options.fzf?
+        selected_gems = FzfMultiSelect.prompt_for_gems_to_update(report.updatable_gems, report.withheld_gems, legend: legend)
+        puts("No gems to update.").then { return } if selected_gems.empty?
 
-      selected_gems = MultiSelect.prompt_for_gems_to_update(report.updatable_gems)
-      puts("No gems to update.").then { return } if selected_gems.empty?
+      else
+        puts_legend_and_withheld_gems(report) unless report.empty?
+        puts("No gems to update.").then { return } if report.updatable_gems.empty?
+
+        selected_gems = MultiSelect.prompt_for_gems_to_update(report.updatable_gems)
+        puts("No gems to update.").then { return } if selected_gems.empty?
+      end
 
       puts "Updating the following gems."
       puts Table.updatable(selected_gems).render
