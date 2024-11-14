@@ -28,11 +28,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Runtime dependencies
-  spec.add_dependency "bundler", "~> 2.0"
-  spec.add_dependency "bundler-audit", ">= 0.9.1"
-  spec.add_dependency "launchy", ">= 2.5.0"
-  spec.add_dependency "pastel", ">= 0.8.0"
-  spec.add_dependency "tty-prompt", ">= 0.23.1"
-  spec.add_dependency "tty-screen", ">= 0.8.2"
-  spec.add_dependency "zeitwerk", "~> 2.6"
+  spec.add_runtime_dependency "bundler", "~> 2.0"
+  spec.add_runtime_dependency "bundler-audit", ">= 0.9.1"
+  spec.add_runtime_dependency "launchy", ">= 2.5.0"
+  spec.add_runtime_dependency "pastel", ">= 0.8.0"
+  spec.add_runtime_dependency "tty-prompt", ">= 0.23.1"
+  spec.add_runtime_dependency "tty-screen", ">= 0.8.2"
+  spec.add_runtime_dependency "zeitwerk", "~> 2.6"
 end
